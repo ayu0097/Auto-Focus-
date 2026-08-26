@@ -378,8 +378,7 @@ class AutoReframeViewModel(application: Application) : AndroidViewModel(applicat
             } else {
                 _uiState.update {
                     it.copy(
-                        isExporting = false,
-                        errorMessage = "Export was cancelled or encountered an error."
+                        isExporting = false
                     )
                 }
             }

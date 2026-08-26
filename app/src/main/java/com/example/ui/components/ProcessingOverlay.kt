@@ -34,6 +34,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -88,9 +91,16 @@ fun ProcessingOverlay(
         label = "RadarScale"
     )
 
+    var isCancelling by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+
     Dialog(
-        onDismissRequest = { /* Modal, cannot dismiss by clicking outside */ },
-        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+        onDismissRequest = {
+            if (progress.isCancellable && !isCancelling) {
+                isCancelling = true
+                onCancel()
+            }
+        },
+        properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = false)
     ) {
         Surface(
             modifier = Modifier
@@ -227,10 +237,16 @@ fun ProcessingOverlay(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Cancel Button
+                // Cancel / Deactivate Button
                 if (progress.isCancellable) {
                     OutlinedButton(
-                        onClick = onCancel,
+                        onClick = {
+                            if (!isCancelling) {
+                                isCancelling = true
+                                onCancel()
+                            }
+                        },
+                        enabled = !isCancelling,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp)
@@ -240,7 +256,7 @@ fun ProcessingOverlay(
                             contentColor = RoseRecord
                         ),
                         border = ButtonDefaults.outlinedButtonBorder.copy(
-                            brush = Brush.horizontalGradient(listOf(RoseRecord.copy(alpha = 0.5f), RoseRecord.copy(alpha = 0.5f)))
+                            brush = Brush.horizontalGradient(listOf(RoseRecord.copy(alpha = 0.6f), RoseRecord.copy(alpha = 0.6f)))
                         )
                     ) {
                         Icon(
@@ -249,7 +265,11 @@ fun ProcessingOverlay(
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Cancel Processing", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            text = if (isCancelling) "Cancelling..." else "Cancel Processing",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
                     }
                 }
             }

@@ -151,10 +151,15 @@ class ComputerVisionTracker(private val context: Context) {
                 val timestampMs = min(durationMs, frameIdx * sampleIntervalMs)
                 val timeUs = timestampMs * 1000L
 
-                // Extract frame bitmap safely
+                // Extract frame bitmap safely and efficiently
                 val rawBitmap = try {
-                    retriever.getFrameAtTime(timeUs, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
-                        ?: retriever.getFrameAtTime(timeUs)
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O_MR1) {
+                        retriever.getScaledFrameAtTime(timeUs, MediaMetadataRetriever.OPTION_CLOSEST_SYNC, 320, 180)
+                            ?: retriever.getFrameAtTime(timeUs, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+                    } else {
+                        retriever.getFrameAtTime(timeUs, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+                            ?: retriever.getFrameAtTime(timeUs)
+                    }
                 } catch (e: Exception) {
                     null
                 }
