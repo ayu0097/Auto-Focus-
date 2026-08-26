@@ -23,6 +23,15 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
+      - name: Restore Keystore and Environment
+        run: |
+          if [ -f "debug.keystore.base64" ] && [ ! -f "debug.keystore" ]; then
+            base64 -d debug.keystore.base64 > debug.keystore || echo "Keystore decoded"
+          fi
+          if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+            cp .env.example .env
+          fi
+
       - name: Grant execute permission for gradlew
         run: |
           if [ -f "./gradlew" ]; then
