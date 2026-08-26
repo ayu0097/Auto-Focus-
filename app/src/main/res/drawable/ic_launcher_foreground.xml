@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer 9:16 vertical frame rectangle (centered in 108dp, safe area ~66dp) -->
+    <!-- 9:16 aspect: e.g. width=36dp, height=64dp, left=36, top=22, right=72, bottom=86 -->
+    <path
+        android:fillColor="#1500F0FF"
+        android:pathData="M38,24 h32 a4,4 0 0 1 4,4 v52 a4,4 0 0 1 -4,4 h-32 a4,4 0 0 1 -4,-4 v-52 a4,4 0 0 1 4,-4 z"
+        android:strokeColor="#00F0FF"
+        android:strokeWidth="2.2" />
+
+    <!-- Corner Reticles / Tracking Frame Markers -->
+    <!-- Top-left -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M31,29 L31,21 L39,21"
+        android:strokeColor="#7000FF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+    <!-- Top-right -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,21 L77,21 L77,29"
+        android:strokeColor="#7000FF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+    <!-- Bottom-left -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M31,79 L31,87 L39,87"
+        android:strokeColor="#7000FF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+    <!-- Bottom-right -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,87 L77,87 L77,79"
+        android:strokeColor="#7000FF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+
+    <!-- Center AI Subject Focus Head & Shoulders Silhouette -->
+    <!-- Head -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,42 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0" />
+    <!-- Shoulders -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M43,62 C43,54 48,52 54,52 C60,52 65,54 65,62 L43,62 Z" />
+
+    <!-- Dynamic Tracking Crosshair Center Dot and Pulse Rings -->
+    <path
+        android:fillColor="#00F0FF"
+        android:pathData="M54,42 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,34 L54,37 M54,47 L54,50 M46,42 L49,42 M59,42 L62,42"
+        android:strokeColor="#00F0FF"
+        android:strokeLineCap="round"
+        android:strokeWidth="1.5" />
+
+    <!-- 9:16 Badge -->
+    <path
+        android:fillColor="#7000FF"
+        android:pathData="M44,69 h20 a2,2 0 0 1 2,2 v6 a2,2 0 0 1 -2,2 h-20 a2,2 0 0 1 -2,-2 v-6 a2,2 0 0 1 2,-2 z" />
+    <!-- Mini indicator dots in badge -->
+    <path
+        android:fillColor="#00F0FF"
+        android:pathData="M50,74 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0 M58,74 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0" />
+</vector>

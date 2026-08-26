@@ -1,0 +1,6 @@
+{
+  "name": "AutoReframe 9:16",
+  "description": "Intelligent video reframing with subject detection, smooth cinematic tracking, and 9:16 vertical export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
