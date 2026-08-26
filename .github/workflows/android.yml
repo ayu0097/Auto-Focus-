@@ -46,17 +46,17 @@ jobs:
       - name: Assemble Debug APK
         run: |
           if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug --no-daemon --stacktrace
+            ./gradlew assembleDebug --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m"
           else
-            gradle assembleDebug --no-daemon --stacktrace
+            gradle assembleDebug --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m"
           fi
 
       - name: Run Unit Tests
         run: |
           if [ -f "./gradlew" ]; then
-            ./gradlew testDebugUnitTest --no-daemon --stacktrace || echo "Tests completed"
+            ./gradlew testDebugUnitTest --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m" || echo "Tests completed"
           else
-            gradle testDebugUnitTest --no-daemon --stacktrace || echo "Tests completed"
+            gradle testDebugUnitTest --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m" || echo "Tests completed"
           fi
 
       - name: Upload Debug APK Artifact

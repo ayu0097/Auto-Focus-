@@ -41,9 +41,9 @@ jobs:
       - name: Build Debug & Release APKs
         run: |
           if [ -f "./gradlew" ]; then
-            ./gradlew assembleRelease --no-daemon --stacktrace || ./gradlew assembleDebug --no-daemon --stacktrace
+            ./gradlew assembleRelease --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m" || ./gradlew assembleDebug --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m"
           else
-            gradle assembleRelease --no-daemon --stacktrace || gradle assembleDebug --no-daemon --stacktrace
+            gradle assembleRelease --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m" || gradle assembleDebug --no-daemon --no-configuration-cache --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m"
           fi
 
       - name: Upload Release Artifact
